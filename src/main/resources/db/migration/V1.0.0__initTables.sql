@@ -1,0 +1,13 @@
+CREATE TABLE "users"
+(
+    id           BIGINT AUTO_INCREMENT PRIMARY KEY,
+    fId          VARCHAR(255) NOT NULL UNIQUE,
+    email        VARCHAR(255) NOT NULL UNIQUE,
+    first_name   VARCHAR(255) NOT NULL,
+    last_name    VARCHAR(255) NOT NULL,
+    address      TEXT(1000),
+    phone_number VARCHAR(20),
+    role         VARCHAR(50) DEFAULT 'CUSTOMER',
+    created_at   TIMESTAMP   DEFAULT CURRENT_TIMESTAMP,
+    updated_at   TIMESTAMP   DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
+);
