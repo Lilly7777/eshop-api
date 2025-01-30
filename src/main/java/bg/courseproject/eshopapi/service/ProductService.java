@@ -2,6 +2,7 @@ package bg.courseproject.eshopapi.service;
 
 import bg.courseproject.eshopapi.dto.ProductDTO;
 import bg.courseproject.eshopapi.entity.Product;
+import bg.courseproject.eshopapi.exception.NotFoundException;
 import bg.courseproject.eshopapi.mapper.ProductMapper;
 import bg.courseproject.eshopapi.repository.ProductRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -31,12 +32,12 @@ public class ProductService {
     }
 
     public ProductDTO getProductDTOById(Long id) {
-        Product product = productRepository.findById(id).orElseThrow(() -> new RuntimeException("Product not found"));
+        Product product = productRepository.findById(id).orElseThrow(() -> new NotFoundException("Product not found"));
         return productMapper.toDTO(product);
     }
 
     public Product getProductById(Long id) {
-        return productRepository.findById(id).orElseThrow(() -> new RuntimeException("Product not found"));
+        return productRepository.findById(id).orElseThrow(() -> new NotFoundException("Product not found"));
     }
 
     public Page<ProductDTO> getProductsByCategoryId(Integer categoryId, Pageable pageable) {
@@ -71,7 +72,7 @@ public class ProductService {
     }
 
     public ProductDTO updateProduct(Long id, ProductDTO productDTO) {
-        Product product = productRepository.findById(id).orElseThrow(() -> new RuntimeException("Product not found"));
+        Product product = productRepository.findById(id).orElseThrow(() -> new NotFoundException("Product not found"));
         product.setName(productDTO.getName());
         product.setDescription(productDTO.getDescription());
         product.setPrice(productDTO.getPrice());
@@ -81,7 +82,7 @@ public class ProductService {
     }
 
     public void updateProductQuantity(Long id, Integer newQuantity) {
-        Product product = productRepository.findById(id).orElseThrow(() -> new RuntimeException("Product not found"));
+        Product product = productRepository.findById(id).orElseThrow(() -> new NotFoundException("Product not found"));
         product.setQuantityInStock(newQuantity);
         productRepository.save(product);
     }

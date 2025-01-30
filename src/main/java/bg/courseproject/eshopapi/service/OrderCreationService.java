@@ -5,6 +5,7 @@ import bg.courseproject.eshopapi.dto.InvoiceItemDTO;
 import bg.courseproject.eshopapi.dto.OrderDTO;
 import bg.courseproject.eshopapi.entity.Order;
 import bg.courseproject.eshopapi.entity.Product;
+import bg.courseproject.eshopapi.exception.NotFoundException;
 import bg.courseproject.eshopapi.mapper.OrderMapper;
 import bg.courseproject.eshopapi.repository.OrderRepository;
 import bg.courseproject.eshopapi.repository.UserRepository;
@@ -37,7 +38,7 @@ public class OrderCreationService {
     public OrderDTO createOrder(Long userId, Set<InvoiceItemDTO> itemsInStock) {
         // Create order
         Order order = new Order();
-        order.setUser(userRepository.findById(userId).orElseThrow(() -> new RuntimeException("User not found")));
+        order.setUser(userRepository.findById(userId).orElseThrow(() -> new NotFoundException("User not found")));
         Set<Product> products = itemsInStock.stream().map(invoiceItemDTO -> productService.getProductById(invoiceItemDTO.getProduct().getId()))
                 .collect(Collectors.toSet());
 
@@ -46,14 +47,14 @@ public class OrderCreationService {
             InvoiceItemDTO invoiceItemDTO = itemsInStock.stream()
                     .filter(invoiceItem -> invoiceItem.getProduct().getId().equals(product.getId()))
                     .findFirst()
-                    .orElseThrow(() -> new RuntimeException("Product not found in shopping cart"));
+                    .orElseThrow(() -> new NotFoundException("Product not found in shopping cart"));
             productService.updateProductQuantity(product.getId(), product.getQuantityInStock() - invoiceItemDTO.getQuantity());
         });
 
         order.setProducts(products);
         order.setTotalPrice(itemsInStock.stream().mapToDouble(invoiceItemDTO -> invoiceItemDTO.getProduct().getPrice() * invoiceItemDTO.getQuantity()).sum());
         order.setStatus(OrderStatus.PENDING);
-        order.setShippingAddress(userRepository.findById(userId).orElseThrow(() -> new RuntimeException("User not found")).getAddress());
+        order.setShippingAddress(userRepository.findById(userId).orElseThrow(() -> new NotFoundException("User not found")).getAddress());
         order = orderRepository.save(order);
 
         return orderMapper.toDTO(order);

@@ -2,6 +2,7 @@ package bg.courseproject.eshopapi.controller.auth;
 
 import bg.courseproject.eshopapi.dto.AuthResponse;
 import bg.courseproject.eshopapi.dto.UserDTO;
+import bg.courseproject.eshopapi.exception.BadRequestException;
 import bg.courseproject.eshopapi.service.AuthService;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
@@ -31,8 +32,7 @@ public class AuthenticationController {
 
             return ResponseEntity.status(HttpStatus.CREATED).body(authResponse);
         } catch (Exception e) {
-            return ResponseEntity.status(HttpStatus.BAD_REQUEST)
-                    .build();
+            throw new BadRequestException();
         }
     }
 
@@ -44,8 +44,7 @@ public class AuthenticationController {
 
             return ResponseEntity.status(HttpStatus.OK).body(authResponse);
         } catch (Exception e) {
-            return ResponseEntity.status(HttpStatus.BAD_REQUEST)
-                    .build();
+            throw new BadRequestException();
         }
     }
 
@@ -57,8 +56,7 @@ public class AuthenticationController {
 
             return ResponseEntity.status(HttpStatus.OK).body(newAuthResponse);
         } catch (Exception e) {
-            return ResponseEntity.status(HttpStatus.BAD_REQUEST)
-                    .build();
+            throw new BadRequestException();
         }
     }
 

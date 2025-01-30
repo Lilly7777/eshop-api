@@ -6,6 +6,8 @@ import bg.courseproject.eshopapi.dto.PaymentDTO;
 import bg.courseproject.eshopapi.entity.Invoice;
 import bg.courseproject.eshopapi.entity.Order;
 import bg.courseproject.eshopapi.entity.Payment;
+import bg.courseproject.eshopapi.exception.BadRequestException;
+import bg.courseproject.eshopapi.exception.NotFoundException;
 import bg.courseproject.eshopapi.mapper.InvoiceMapper;
 import bg.courseproject.eshopapi.mapper.PaymentMapper;
 import bg.courseproject.eshopapi.repository.InvoiceRepository;
@@ -44,10 +46,10 @@ public class PaymentProcessingService {
 
     private Order validateOrder(PaymentDTO paymentDTO) {
         Order order = orderRepository.findById(paymentDTO.getOrderId())
-                .orElseThrow(() -> new RuntimeException("Order not found"));
+                .orElseThrow(() -> new NotFoundException("Order not found"));
 
         if (!Objects.equals(order.getTotalPrice(), paymentDTO.getAmount())) {
-            throw new RuntimeException("Payment amount does not match order total price");
+            throw new BadRequestException();
         }
         return order;
     }
