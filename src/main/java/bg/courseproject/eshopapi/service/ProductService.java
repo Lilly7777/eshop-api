@@ -22,15 +22,23 @@ public class ProductService {
         this.productMapper = productMapper;
     }
 
+    public boolean hasEnoughStock(Long productId, Integer quantity) {
+        return getProductDTOById(productId).getStockQuantity() >= quantity;
+    }
+
     public List<ProductDTO> getAllProducts() {
         return productRepository.findAll().stream()
                 .map(productMapper::toDTO)
                 .collect(Collectors.toList());
     }
 
-    public ProductDTO getProductById(Long id) {
+    public ProductDTO getProductDTOById(Long id) {
         Product product = productRepository.findById(id).orElseThrow(() -> new RuntimeException("Product not found"));
         return productMapper.toDTO(product);
+    }
+
+    public Product getProductById(Long id) {
+        return productRepository.findById(id).orElseThrow(() -> new RuntimeException("Product not found"));
     }
 
     public ProductDTO createProduct(ProductDTO productDTO) {
@@ -47,6 +55,12 @@ public class ProductService {
         product.setQuantityInStock(productDTO.getStockQuantity());
         product = productRepository.save(product);
         return productMapper.toDTO(product);
+    }
+
+    public void updateProductQuantity(Long id, Integer newQuantity) {
+        Product product = productRepository.findById(id).orElseThrow(() -> new RuntimeException("Product not found"));
+        product.setQuantityInStock(newQuantity);
+        productRepository.save(product);
     }
 
     public void deleteProduct(Long id) {

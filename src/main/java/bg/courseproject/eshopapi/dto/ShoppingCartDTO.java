@@ -11,9 +11,6 @@ import java.util.Set;
 @JsonRootName(value = "shopping_cart")
 public class ShoppingCartDTO {
 
-    @JsonProperty("id")
-    private Long id;
-
     @JsonProperty("user_id")
     private Long userId;
 

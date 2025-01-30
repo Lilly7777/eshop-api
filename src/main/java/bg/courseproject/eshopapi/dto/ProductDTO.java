@@ -10,6 +10,9 @@ import lombok.Data;
 @JsonRootName(value = "product")
 public class ProductDTO {
 
+    @JsonProperty(value = "product_id", required = true)
+    private Long id;
+
     @JsonProperty(value = "name", required = true)
     private String name;
 
