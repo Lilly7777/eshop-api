@@ -1,0 +1,17 @@
+INSERT INTO "categories" (name, description, parent_category_id, created_at, updated_at) VALUES
+('T-Shirts', 'Category for T-Shirts', NULL, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP),
+('Jeans', 'Category for Jeans', NULL, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP),
+('Outerwear', 'Category for Jackets, Coats, Vests', NULL, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP),
+('Sweaters', 'Category for Sweaters, Cardigans', NULL, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP),
+('Shorts', 'Category for Shorts', NULL, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP),
+('Dresses and Skirts', 'Category for Dresses, Skirts', NULL, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP),
+('Blouses', 'Category for Blouses', NULL, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP),
+('Socks', 'Category for Socks', NULL, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP),
+('Accessories', 'Category for Hats, Scarves, Gloves, Caps', NULL, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP),
+('Belts', 'Category for Belts', NULL, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP),
+('Footwear', 'Category for Shoes, Boots, Sandals, Slippers', NULL, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP),
+('Underwear', 'Category for Pajamas, Underwear, Bras', NULL, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP),
+('Swimwear', 'Category for Swimsuits', NULL, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP),
+('Tracksuits', 'Category for Tracksuits', NULL, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP),
+('Formal Wear', 'Category for Blazers, Suits', NULL, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP),
+('Activewear', 'Category for Leggings, Tights', NULL, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP);
