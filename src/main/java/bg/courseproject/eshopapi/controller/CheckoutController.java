@@ -1,4 +1,4 @@
-package bg.courseproject.eshopapi.controller.auth;
+package bg.courseproject.eshopapi.controller;
 
 import bg.courseproject.eshopapi.dto.*;
 import bg.courseproject.eshopapi.service.OrderCreationService;
@@ -19,9 +19,13 @@ import java.util.stream.Collectors;
 @Tag(name = "Checkout Shopping Cart", description = "Endpoints for shopping cart checkout & order creation")
 public class CheckoutController {
 
-    private OrderCreationService orderCreationService;
-    private PaymentProcessingService paymentProcessingService;
+    private final OrderCreationService orderCreationService;
+    private final PaymentProcessingService paymentProcessingService;
 
+    public CheckoutController(OrderCreationService orderCreationService, PaymentProcessingService paymentProcessingService) {
+        this.orderCreationService = orderCreationService;
+        this.paymentProcessingService = paymentProcessingService;
+    }
 
     @PostMapping("/checkout")
     @Operation(summary = "Checkout shopping cart", description = "Creates an order from the shopping cart")

@@ -5,10 +5,9 @@ import bg.courseproject.eshopapi.entity.Product;
 import bg.courseproject.eshopapi.mapper.ProductMapper;
 import bg.courseproject.eshopapi.repository.ProductRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
-
-import java.util.List;
-import java.util.stream.Collectors;
 
 @Service
 public class ProductService {
@@ -26,10 +25,9 @@ public class ProductService {
         return getProductDTOById(productId).getStockQuantity() >= quantity;
     }
 
-    public List<ProductDTO> getAllProducts() {
-        return productRepository.findAll().stream()
-                .map(productMapper::toDTO)
-                .collect(Collectors.toList());
+    public Page<ProductDTO> getAllProducts(Pageable pageable) {
+        return productRepository.findAll(pageable)
+                .map(productMapper::toDTO);
     }
 
     public ProductDTO getProductDTOById(Long id) {
@@ -39,6 +37,31 @@ public class ProductService {
 
     public Product getProductById(Long id) {
         return productRepository.findById(id).orElseThrow(() -> new RuntimeException("Product not found"));
+    }
+
+    public Page<ProductDTO> getProductsByCategoryId(Integer categoryId, Pageable pageable) {
+        return productRepository.findAllProductsByCategoryId(categoryId, pageable)
+                .map(productMapper::toDTO);
+    }
+
+    public Page<ProductDTO> getProductsByName(String name, Pageable pageable) {
+        return productRepository.findAllProductsByName(name, pageable)
+                .map(productMapper::toDTO);
+    }
+
+    public Page<ProductDTO> getProductsByPriceRange(Double minPrice, Double maxPrice, Pageable pageable) {
+        return productRepository.findAllProductsByPriceRange(minPrice, maxPrice, pageable)
+                .map(productMapper::toDTO);
+    }
+
+    public Page<ProductDTO> getProductsByDescription(String description, Pageable pageable) {
+        return productRepository.findAllProductsByDescription(description, pageable)
+                .map(productMapper::toDTO);
+    }
+
+    public Page<ProductDTO> getProductsByStockQuantity(Integer stockQuantity, Pageable pageable) {
+        return productRepository.findAllProductsByStockQuantity(stockQuantity, pageable)
+                .map(productMapper::toDTO);
     }
 
     public ProductDTO createProduct(ProductDTO productDTO) {

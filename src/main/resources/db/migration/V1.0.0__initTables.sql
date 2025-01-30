@@ -95,7 +95,7 @@ CREATE TABLE "products"
     description       VARCHAR(1000),
     price             DOUBLE PRECISION                        NOT NULL,
     quantity_in_stock INT                                     NOT NULL,
-    image_url         VARCHAR(255)                            NOT NULL,
+    image_url         VARCHAR(255),
     category_id       BIGINT,
     created_at        TIMESTAMP,
     updated_at        TIMESTAMP,

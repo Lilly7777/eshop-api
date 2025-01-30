@@ -1,8 +1,6 @@
 package bg.courseproject.eshopapi.mapper;
 
-import bg.courseproject.eshopapi.dto.OrderDTO;
 import bg.courseproject.eshopapi.dto.PaymentDTO;
-import bg.courseproject.eshopapi.entity.Order;
 import bg.courseproject.eshopapi.entity.Payment;
 import org.mapstruct.Mapper;
 import org.mapstruct.MappingConstants;

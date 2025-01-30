@@ -30,7 +30,7 @@ public class Product {
     @Column(name = "QUANTITY_IN_STOCK", nullable = false)
     private Integer quantityInStock;
 
-    @Column(name = "IMAGE_URL", nullable = false)
+    @Column(name = "IMAGE_URL")
     private String imageUrl;
 
     @ManyToOne
