@@ -21,7 +21,4 @@ public class InvoiceItemDTO {
     @JsonProperty(value = "product")
     private ProductDTO product;
 
-    @JsonProperty(value = "invoice")
-    private InvoiceDTO invoice;
-
 }

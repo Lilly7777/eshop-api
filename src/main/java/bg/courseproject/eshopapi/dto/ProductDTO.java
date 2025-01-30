@@ -23,5 +23,5 @@ public class ProductDTO {
     private Integer stockQuantity;
 
     @JsonProperty(value = "category")
-    private Category category;
+    private CategoryDTO category;
 }

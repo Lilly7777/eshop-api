@@ -18,7 +18,7 @@ public class ShoppingCartDTO {
     private Long userId;
 
     @JsonProperty("products")
-    private Set<ProductDTO> products;
+    private Set<InvoiceItemDTO> products;
 
     @JsonProperty("total_price")
     private Double totalPrice;

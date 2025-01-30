@@ -17,6 +17,6 @@ public class CategoryDTO {
     private String description;
 
     @JsonProperty(value = "parent_category")
-    private Category parentCategory;
+    private CategoryDTO parentCategory;
 
 }
