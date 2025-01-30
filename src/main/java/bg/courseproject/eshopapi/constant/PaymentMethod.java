@@ -1,4 +1,4 @@
-package bg.courseproject.eshopapi.entity;
+package bg.courseproject.eshopapi.constant;
 
 public enum PaymentMethod {
     CREDIT_CARD,

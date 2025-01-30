@@ -1,5 +1,6 @@
 package bg.courseproject.eshopapi.entity;
 
+import bg.courseproject.eshopapi.constant.OrderStatus;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
